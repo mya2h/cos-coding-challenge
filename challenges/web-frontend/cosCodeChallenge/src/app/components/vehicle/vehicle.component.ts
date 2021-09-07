@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {VehicleService} from '../../services/vehicle.service'
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehicleComponent implements OnInit {
 
-  constructor() { }
+  currentAuction: any;
+  constructor(private auction: VehicleService) { }
 
   ngOnInit(): void {
+
+    this.auction.getAuctions().subscribe(
+      data => {
+        this.currentAuction = data;
+        console.log(data)
+      },
+      err => {
+        this.currentAuction = JSON.parse(err.error).message;
+        console.log(err)
+      }
+    
+    )
   }
 
 }

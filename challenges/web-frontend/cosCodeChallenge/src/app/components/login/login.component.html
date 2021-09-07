@@ -1,28 +1,24 @@
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
 
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="login">
-    <mat-card-title>Car <Span> On </Span> Sale</mat-card-title>
-<mat-card-content>
-<form [formGroup]="userInfo" >
-  <p>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Email" formControlName="email" >
-    </mat-form-field>
-  </p>
+            <h3 class="mb-5">Car <span>On</span> Sale</h3>
+            <form [formGroup]="userInfo" (ngSubmit)="logIn()">
+            <div class="form-outline mb-4">
+              <input type="email" placeholder="Email address" formControlName="email" class="form-control" mdbActive/>
+          
+            </div>
 
-  <p>
-    <mat-form-field>
-      <input type="password" matInput placeholder="Password" formControlName="password">
-      
-    </mat-form-field>
-  </p>
+            <div class="form-outline mb-4">
+              <input type="password" placeholder="Password"  formControlName="password" class="form-control" />
+            </div>
 
-  <div class="button">
-    <button type="submit" mat-flat-button color="accent">Login</button>
-  </div>
-</form>
-</mat-card-content>
-</mat-card>
-
-  
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>

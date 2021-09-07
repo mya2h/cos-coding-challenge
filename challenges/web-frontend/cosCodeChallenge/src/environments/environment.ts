@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   title: 'Dev Environment Heading',
-  apiURL: 'https://api-core-dev.caronsale.de/api/v1'
+  apiURL: 'https://api-core-dev.caronsale.de/api/'
 };
 
 /*
