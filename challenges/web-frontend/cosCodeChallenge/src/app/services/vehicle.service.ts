@@ -14,6 +14,6 @@ export class VehicleService {
   constructor(private http: HttpClient) { }
   
   getAuctions(): Observable<any> {
-    return this.http.get(API_URL + 'v2/auction/buyer/', { responseType: 'text' });
+    return this.http.get(API_URL + 'v2/auction/buyer/waiting/pickup');
   }
 }
