@@ -23,7 +23,6 @@ export class AuthInterceptor implements HttpInterceptor {
     const userId = this.token.getUserId();
     const token = this.token.getToken();
     if (token != null && userId!=null) {
-      console.log("sdfk")
       authReq = req.clone({
         setHeaders: {
           "authtoken":token,

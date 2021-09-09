@@ -1,7 +1,7 @@
 
-<nav class="navbar navbar-light amber lighten-3 z-depth-1 mb-r ">
+<nav class="navbar navbar-light mb-r ">
   <div class="container-fluid">
-    <a class="navbar-brand">Car On Sale</a>
+    <a class="navbar-brand">Car <span>On</span> Sale</a>
     <div class="d-flex input-group w-auto" style="cursor: pointer" (click)="logout()">
       <i class="fas fa-sign-out-alt">Logout</i>
     </div>  
@@ -34,48 +34,45 @@
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>
-  <div class="container" *ngIf="!vehicleLoading">
+  <div class="main" *ngIf="!vehicleLoading">
     <div class="row" >
-      <div class="col-4" *ngFor="let course of currentAuction">
+      <div class="col-3" *ngFor="let course of currentAuction" style="margin-top: 20px;">
         <mdb-card>
-          <div class="view overlay waves-light" mdbWavesEffect>
-            <!-- Card img -->
-            <img   src = {{course.associatedVehicle.vehicleImages[0].url}}  alt="Card image cap" width="100%" height="250"/>
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
+            <div class="view overlay waves-light" mdbWavesEffect>
+              <img src = {{course.associatedVehicle.vehicleImages[0].url}}  alt="Card image cap" width="100%" height="250"/>
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
           </div>
-          <!--Card content-->
-          <mdb-card-body>
-            <!--Title-->
+          <div *ngIf ="!course.amIHighestBidder">
+            <i class="far fa-star" ></i>
+          </div>
+          <div *ngIf ="course.amIHighestBidder" class="higest">
+            <i class="far fa-star" ></i> Highest Bider
+          </div>
+          <mdb-card-body>       
             <mdb-card-title>
-              <h5>{{course.label}}</h5>
+              <a>{{course.label}}</a>
             </mdb-card-title>
-      
-            <!--Text-->
             <mdb-card-text> 
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Fuel Type: {{course.associatedVehicle.fuelType}}</li>
-                <li class="list-group-item">Transmission : {{course.associatedVehicle.transmission}}</li>
-                <li class="list-group-item">Mileage : {{course.associatedVehicle.mileageInKm}} KM</li>
-                <li  class="list-group-item list-group-item-action list-group-item-warning">
-                  <h6>{{course.numBids}} bids</h6>
-                  <h6>{{course.currentHighestBidValue}} Euro</h6>
+              <ul>
+                <li>
+                  Fuel Type : {{course.associatedVehicle.fuelType}}
+                </li>
+                <li>
+                  Transmission: {{course.associatedVehicle.transmission}}
+                </li>
+                <li>
+                  Mileage : {{course.associatedVehicle.mileageInKm}} KM
                 </li>
               </ul>
             </mdb-card-text>
-      
           </mdb-card-body>
+          <div class="card-footer text-muted">
+            <h6>{{course.numBids}} bids <span>Highest Bid: {{course.currentHighestBidValue}} €</span></h6>
+            <h6 style="color:brown" *ngIf="course.differenceInHours != 'invalid'">{{course.differenceInHours}} Left</h6>
+            <h6 style="color:brown" *ngIf="course.differenceInHours == 'invalid'">Past Due</h6>
+          </div>
         </mdb-card>
     </div>
-    <br/>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul>
-    </nav>
   </div>
