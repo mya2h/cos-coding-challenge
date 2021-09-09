@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {VehicleService} from '../../services/vehicle.service'
+import { Router } from '@angular/router';
 import { TokenStorageService } from '../../services/token-storage.service'
-import {Vehicle} from '../../model/vehicle'
+
+
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
   styleUrls: ['./vehicle.component.css']
 })
 export class VehicleComponent implements OnInit {
-
+  vehicleLoading = true;
   currentAuction: any;
-  constructor(private auction: VehicleService,private token: TokenStorageService) { 
+  defaultImage = "https://res.cloudinary.com/castle-tech-gmbh/image/upload/v1618222180/dkfuggmcdqs09wfvppvo.jpg"
+  constructor(private auction: VehicleService,private auth: TokenStorageService,private router: Router) { 
     this.currentAuction = [];
   }
 
@@ -19,6 +22,7 @@ export class VehicleComponent implements OnInit {
     this.auction.getAuctions().subscribe(
       data => {
         this.currentAuction = data.items;
+        this.vehicleLoading= false
         console.log(this.currentAuction)
       },
       err => {
@@ -26,6 +30,11 @@ export class VehicleComponent implements OnInit {
       }
     
     )
+  }
+  logout(){
+    this.auth.signOut()
+    this.router.navigate(["login"])
+    
   }
 
 }

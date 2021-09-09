@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import {AuthInterceptor} from './helpers/auth.interceptor'
     BrowserAnimationsModule,
     FormsModule, 
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
     MDBBootstrapModule.forRoot()
   ],
   providers: [

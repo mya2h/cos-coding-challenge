@@ -1,76 +1,81 @@
 
-
-  <div class="container" >
+<nav class="navbar navbar-light amber lighten-3 z-depth-1 mb-r ">
+  <div class="container-fluid">
+    <a class="navbar-brand">Car On Sale</a>
+    <div class="d-flex input-group w-auto" style="cursor: pointer" (click)="logout()">
+      <i class="fas fa-sign-out-alt">Logout</i>
+    </div>  
+  </div>
+</nav>
+<div class="loading"  *ngIf="vehicleLoading">
+  Vehicles Loading...
+  <div class="spinner-grow text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="spinner-grow text-secondary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="spinner-grow text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="spinner-grow text-danger" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="spinner-grow text-warning" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="spinner-grow text-info" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="spinner-grow text-light" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="spinner-grow text-dark" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+  <div class="container" *ngIf="!vehicleLoading">
     <div class="row" >
-      <div class="col-3" *ngFor="let course of currentAuction">
-        <div class="card">
-          <img
-            src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{course.label}}</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the bulk of the
-              card's content.
-            </p>
+      <div class="col-4" *ngFor="let course of currentAuction">
+        <mdb-card>
+          <div class="view overlay waves-light" mdbWavesEffect>
+            <!-- Card img -->
+            <img   src = {{course.associatedVehicle.vehicleImages[0].url}}  alt="Card image cap" width="100%" height="250"/>
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
           </div>
-      </div>
+          <!--Card content-->
+          <mdb-card-body>
+            <!--Title-->
+            <mdb-card-title>
+              <h5>{{course.label}}</h5>
+            </mdb-card-title>
+      
+            <!--Text-->
+            <mdb-card-text> 
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Fuel Type: {{course.associatedVehicle.fuelType}}</li>
+                <li class="list-group-item">Transmission : {{course.associatedVehicle.transmission}}</li>
+                <li class="list-group-item">Mileage : {{course.associatedVehicle.mileageInKm}} KM</li>
+                <li  class="list-group-item list-group-item-action list-group-item-warning">
+                  <h6>{{course.numBids}} bids</h6>
+                  <h6>{{course.currentHighestBidValue}} Euro</h6>
+                </li>
+              </ul>
+            </mdb-card-text>
+      
+          </mdb-card-body>
+        </mdb-card>
     </div>
+    <br/>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
   </div>
-
-
-
-
-      <!-- <div class="col-sm">
-        <div class="card">
-    <img
-      src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
-      class="card-img-top"
-      alt="..."
-    />
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk of the
-        card's content.
-      </p>
-    </div>
-  </div>
-      </div>
-      <div class="col-sm">
-        <div class="card">
-    <img
-      src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
-      class="card-img-top"
-      alt="..."
-    />
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk of the
-        card's content.
-      </p>
-    </div>
-  </div>
-  
-      </div>
-      <div class="col-sm">
-        <div class="card">
-    <img
-      src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
-      class="card-img-top"
-      alt="..."
-    />
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk of the
-        card's content.
-      </p>
-    </div>
-  </div>
-  
-      </div>
-    </div> -->

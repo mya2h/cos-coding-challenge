@@ -1,21 +1,19 @@
-  <div class="container py-5 h-100">
+<div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
-
             <h3 class="mb-5">Car <span>On</span> Sale</h3>
             <form [formGroup]="userInfo" (ngSubmit)="logIn()">
             <div class="form-outline mb-4">
-              <input type="email" placeholder="Email address" formControlName="email" class="form-control" mdbActive/>
-          
+              <input type="email" id="email" placeholder="Email address" formControlName="email" class="form-control" required/> 
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" placeholder="Password"  formControlName="password" class="form-control" />
+              <input type="password" id="password" placeholder="Password" formControlName="password" class="form-control" required />
             </div>
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!userInfo.valid">Login</button>
           </form>
           </div>
         </div>

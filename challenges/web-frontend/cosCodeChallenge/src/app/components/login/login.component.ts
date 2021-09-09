@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators,FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup,AbstractControl, Validators,FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 
@@ -11,6 +11,7 @@ import { TokenStorageService } from '../../services/token-storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
 
  userInfo = new FormGroup({
   email:new FormControl('', [
@@ -22,30 +23,34 @@ export class LoginComponent implements OnInit {
     Validators.required,
   ])
 })
-isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';  
+  @ViewChild(ToastContainerDirective, { static: true })
+  toastContainer!: ToastContainerDirective;
 
- constructor(private router: Router,private authService: AuthService, private tokenStorage: TokenStorageService) { }
+ constructor(private toastrService: ToastrService,private router: Router,private authService: AuthService, private tokenStorage: TokenStorageService) { }
   ngOnInit(): void {
   }
+
   logIn(){
     const { email, password } = this.userInfo.value;
     this.authService.login(email, password).subscribe(
       data => {
-        this.tokenStorage.saveToken(data.token);
-        this.tokenStorage.saveUserId(data.userId);
-        this.tokenStorage.saveUser(data)
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.router.navigate(["/vehicle"])
+        if(data.privileges.includes("SALESMAN_USER")){
+          this.tokenStorage.saveToken(data.token);
+          this.tokenStorage.saveUserId(data.userId);
+          this.tokenStorage.saveUser(data)
+          this.router.navigate(["/vehicle"])
+        }
+        else{
+          this.toastrService.error("Unauthorized user ", 'Error',
+          {timeOut: 2000});
+        }      
     },
       err => {
-        this.errorMessage = "Unauthorized user ";
-        console.log(this.errorMessage)
-        this.isLoginFailed = true;
+        this.toastrService.error("Unauthorized user ", 'Error',
+        {timeOut: 2000});
       }
     );
   }
-
 }
+
+

@@ -1,11 +1,11 @@
 .vehicle{
-  margin: 5%;
+  margin: 25%;
 }
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.container{
+  margin-top: 4%;
 }
-.example-card {
-  max-width: 400px;
-
+.loading{
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
 }
