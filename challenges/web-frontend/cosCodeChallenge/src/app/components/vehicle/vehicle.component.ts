@@ -3,6 +3,7 @@ import {VehicleService} from '../../services/vehicle.service'
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../../services/token-storage.service'
 import * as moment from 'moment';
+import { interval, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-vehicle',
@@ -20,29 +21,36 @@ export class VehicleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.auction.getAuctions().subscribe(
-      data => {
-        this.vehicleLoading= false
-        for (var item of data.items) {
-        if(new Date(item.endingTime)<new Date()){
-          item.differenceInHours = "invalid"
-        }
-        else{
-          item.differenceInHours =moment.utc(moment(new Date(item.endingTime),"DD/MM/YYYY HH:mm:ss").diff(moment(new Date(),"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")
-        }
-        this.currentAuction.push(item)
-        }
-      },
-      err => {
-        this.currentAuction = JSON.parse(err.error).message;
-      }
-    )
+    interval(20000)
+    .subscribe(() => {
+      this.getAuctions()
+    });
   }
   logout(){
     this.auth.signOut()
     this.router.navigate(["login"])
     
   }
+  getAuctions(){
+    this.auction.getAuctions().subscribe(
+      data => {
+        this.vehicleLoading= false
+        this.currentAuction = data.items
+        this.currentAuction.map(function (item: any) {
+          if(new Date(item.endingTime)<new Date()){
+          item.differenceInHours = "invalid"
+        }
+        else{
+          item.differenceInHours =moment.utc(moment(new Date(item.endingTime),"DD/MM/YYYY HH:mm:ss").diff(moment(new Date(),"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")
+        }
+        }); 
+      },
+      err => {
+        this.currentAuction = JSON.parse(err.error).message;
+      }
+    )
+  }
 
 }
+
+
