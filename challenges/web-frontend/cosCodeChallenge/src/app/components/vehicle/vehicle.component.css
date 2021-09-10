@@ -33,3 +33,8 @@ h6 span{
 .star{
   padding-left: 90%;
 }
+.main h2{
+  display: flex;
+  justify-content: center;
+  font-weight: 400;
+}
