@@ -1,57 +1,36 @@
 :host {
-    display: block;
-    justify-content: center;
-  }
-  .container {
-    margin-top: 4%;
-
-  }
-  .mb-5{
-      font-size: 30px;
-      color: #2f343e;
-      font-weight: 400;
-  }
-  .mb-5 span{
-   color: #ffd740;
-   font-weight: 700;
+  display: block;
+  justify-content: center;
 }
 
+.mb-5{
+  font-size: 30px;
+  color: #2f343e;
+  font-weight: 400;     
+}
+.mb-5 span{
+  color: #ffd740;
+  font-weight: 700;
+}
 button{
-    display: block;
-    width: 100%;
-    border: none;
-    padding: 10px 18px;
-    font-size: 16px;
-    color: #2f343e;
-    cursor: pointer;
-    text-align: center;
-    background: #ffd740;
-    border-color: #ffd740;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  color: #2f343e;
+  cursor: pointer;
+  text-align: center;
+  background: #ffd740;
+  border-color: #ffd740;  
+}
+button:disabled,
+button[disabled]{
+  border: 1px solid #eec329;
+  background-color: #fad963;
+  color: #252525;
 }
 button:hover{
-    background: #ffd740;
-    border-color: #ffd740;
+  background: #ffd740;
+  border-color: #ffd740;
 }
-.alert {
-    padding: 20px;
-    background-color: #f44336; /* Red */
-    color: white;
-    margin-bottom: 15px;
-  }
-  
-  /* The close button */
-  .closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  /* When moving the mouse over the close button */
-  .closebtn:hover {
-    color: black;
-  }

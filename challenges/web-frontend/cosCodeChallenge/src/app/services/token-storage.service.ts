@@ -44,10 +44,10 @@ export class TokenStorageService {
   }
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('auth-token');
-    if(token){
+    if (token) {
       return true
     }
-    else{
+    else {
       return false
     }
   }

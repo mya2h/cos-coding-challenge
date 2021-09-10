@@ -26,6 +26,10 @@ h6 span{
   border-left: 2px solid;
   padding-left: 5px;
 }
-.higest{
+.highest{
   color: #dbac00;
+  padding-left: 50%;
+}
+.star{
+  padding-left: 90%;
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';import {
+import { Injectable } from '@angular/core'; import {
   HttpRequest,
   HttpHandler,
   HTTP_INTERCEPTORS,
@@ -16,19 +16,19 @@ const USER_ID_HEADER_KEY = "userid"
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private token: TokenStorageService) {}
+  constructor(private token: TokenStorageService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req;
     const userId = this.token.getUserId();
     const token = this.token.getToken();
-    if (token != null && userId!=null) {
+    if (token != null && userId != null) {
       authReq = req.clone({
         setHeaders: {
-          "authtoken":token,
-          "userid":userId
+          "authtoken": token,
+          "userid": userId
         }
-    });
+      });
     }
     return next.handle(authReq);
   }
